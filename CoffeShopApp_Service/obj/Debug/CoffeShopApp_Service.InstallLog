@@ -1,0 +1,13 @@
+﻿Installing assembly 'C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.InstallLog
+   assemblypath = C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.exe
+Installing service CoffeeShoApp_Service...
+Service CoffeeShoApp_Service has been successfully installed.
+Creating EventLog source CoffeeShoApp_Service in log Application...
+Committing assembly 'C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.InstallLog
+   assemblypath = C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.exe

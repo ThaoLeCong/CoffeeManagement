@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Coffee_ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TblAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblBill">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableID" Type="Int32" Nullable="false" />
+    <Property Name="DateCheckIn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateCheckOut" Type="DateTime" Precision="3" />
+    <Property Name="BillStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TblTable" Relationship="Self.FK__TblBill__BillSta__117F9D94" FromRole="TblBill" ToRole="TblTable" />
+    <NavigationProperty Name="TblBillInfors" Relationship="Self.FK__TblBillIn__Total__164452B1" FromRole="TblBill" ToRole="TblBillInfor" />
+  </EntityType>
+  <EntityType Name="TblBillInfor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BillID" Type="Int32" Nullable="false" />
+    <Property Name="FoodID" Type="Int32" Nullable="false" />
+    <Property Name="CountF" Type="Int32" Nullable="false" />
+    <Property Name="Total" Type="Double" Nullable="false" />
+    <NavigationProperty Name="TblBill" Relationship="Self.FK__TblBillIn__Total__164452B1" FromRole="TblBillInfor" ToRole="TblBill" />
+    <NavigationProperty Name="TblFood" Relationship="Self.FK__TblBillIn__FoodI__173876EA" FromRole="TblBillInfor" ToRole="TblFood" />
+  </EntityType>
+  <EntityType Name="TblFood">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="TblBillInfors" Relationship="Self.FK__TblBillIn__FoodI__173876EA" FromRole="TblFood" ToRole="TblBillInfor" />
+    <NavigationProperty Name="TblFoodCategory" Relationship="Self.FK__TblFood__Price__0BC6C43E" FromRole="TblFood" ToRole="TblFoodCategory" />
+  </EntityType>
+  <EntityType Name="TblFoodCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblFoods" Relationship="Self.FK__TblFood__Price__0BC6C43E" FromRole="TblFoodCategory" ToRole="TblFood" />
+  </EntityType>
+  <EntityType Name="TblTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TableStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TableType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TblBills" Relationship="Self.FK__TblBill__BillSta__117F9D94" FromRole="TblTable" ToRole="TblBill" />
+  </EntityType>
+  <Association Name="FK__TblBill__BillSta__117F9D94">
+    <End Role="TblTable" Type="Self.TblTable" Multiplicity="1" />
+    <End Role="TblBill" Type="Self.TblBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblBill">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TblBillIn__Total__164452B1">
+    <End Role="TblBill" Type="Self.TblBill" Multiplicity="1" />
+    <End Role="TblBillInfor" Type="Self.TblBillInfor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblBill">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblBillInfor">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TblBillIn__FoodI__173876EA">
+    <End Role="TblFood" Type="Self.TblFood" Multiplicity="1" />
+    <End Role="TblBillInfor" Type="Self.TblBillInfor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFood">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblBillInfor">
+        <PropertyRef Name="FoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TblFood__Price__0BC6C43E">
+    <End Role="TblFoodCategory" Type="Self.TblFoodCategory" Multiplicity="1" />
+    <End Role="TblFood" Type="Self.TblFood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFoodCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblFood">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Coffee_ShopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TblAccounts" EntityType="Self.TblAccount" />
+    <EntitySet Name="TblBills" EntityType="Self.TblBill" />
+    <EntitySet Name="TblBillInfors" EntityType="Self.TblBillInfor" />
+    <EntitySet Name="TblFoods" EntityType="Self.TblFood" />
+    <EntitySet Name="TblFoodCategories" EntityType="Self.TblFoodCategory" />
+    <EntitySet Name="TblTables" EntityType="Self.TblTable" />
+    <AssociationSet Name="FK__TblBill__BillSta__117F9D94" Association="Self.FK__TblBill__BillSta__117F9D94">
+      <End Role="TblTable" EntitySet="TblTables" />
+      <End Role="TblBill" EntitySet="TblBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TblBillIn__Total__164452B1" Association="Self.FK__TblBillIn__Total__164452B1">
+      <End Role="TblBill" EntitySet="TblBills" />
+      <End Role="TblBillInfor" EntitySet="TblBillInfors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TblBillIn__FoodI__173876EA" Association="Self.FK__TblBillIn__FoodI__173876EA">
+      <End Role="TblFood" EntitySet="TblFoods" />
+      <End Role="TblBillInfor" EntitySet="TblBillInfors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TblFood__Price__0BC6C43E" Association="Self.FK__TblFood__Price__0BC6C43E">
+      <End Role="TblFoodCategory" EntitySet="TblFoodCategories" />
+      <End Role="TblFood" EntitySet="TblFoods" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Coffee_ShopModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Coffee_ShopModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

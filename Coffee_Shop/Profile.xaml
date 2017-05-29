@@ -1,0 +1,50 @@
+﻿<Window x:Class="Coffee_Shop.Profile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Profile" Height="500" Width="600">
+    <Window.Background>
+        <ImageBrush>
+            
+        </ImageBrush>
+    </Window.Background>
+    <DockPanel LastChildFill="False" HorizontalAlignment="Center">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True" Margin="20">
+            <Label HorizontalContentAlignment="Center" DockPanel.Dock="Left" FontSize="52">Change Profile</Label>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
+            <Label DockPanel.Dock="Left" Width="150" FontSize="14" FontWeight="Bold">
+                Tên đăng nhập :
+            </Label>
+            <TextBox x:Name="txtUserName" IsReadOnly="True" Width="250" VerticalContentAlignment="Center"></TextBox>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
+            <Label DockPanel.Dock="Left" Width="150" FontSize="14" FontWeight="Bold">
+                Tên hiển thị :
+            </Label>
+            <TextBox x:Name="txtDisplayName" Width="250" VerticalContentAlignment="Center"></TextBox>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
+            <Label DockPanel.Dock="Left" Width="150" FontSize="14" FontWeight="Bold">
+                Mật khẩu :
+            </Label>
+            <PasswordBox x:Name="txtPassWord" Width="250" VerticalContentAlignment="Center"></PasswordBox>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
+            <Label DockPanel.Dock="Left" Width="150" FontSize="14" FontWeight="Bold">
+                Mật khẩu mới:
+            </Label>
+            <PasswordBox x:Name="txtNewPassWord" Width="250" VerticalContentAlignment="Center"></PasswordBox>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
+            <Label DockPanel.Dock="Left" Width="150" FontSize="14" FontWeight="Bold">
+                Nhập lại :
+            </Label>
+            <PasswordBox x:Name="txtConfirmPassWord" Width="250" VerticalContentAlignment="Center"></PasswordBox>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" HorizontalAlignment="Center">
+            <Button Width="100" Height="30" Margin="140,40,0,0" FontSize="14" FontWeight="Bold" Click="Button_Click">
+                Lưu
+            </Button>
+        </DockPanel>
+    </DockPanel>
+</Window>

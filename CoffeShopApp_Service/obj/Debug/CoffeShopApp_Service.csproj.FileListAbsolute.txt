@@ -1,0 +1,8 @@
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\bin\Debug\CoffeShopApp_Service.exe.config
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\bin\Debug\CoffeShopApp_Service.exe
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\bin\Debug\CoffeShopApp_Service.pdb
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.csprojResolveAssemblyReference.cache
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.ProjectInstaller.resources
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.csproj.GenerateResource.Cache
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.exe
+C:\Users\PAC\Documents\Visual Studio 2017\Projects\Coffee_Shop\CoffeShopApp_Service\obj\Debug\CoffeShopApp_Service.pdb

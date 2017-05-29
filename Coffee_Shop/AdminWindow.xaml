@@ -1,0 +1,445 @@
+﻿ <Window x:Class="Coffee_Shop.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AdminWindow" Height="750" Width="1050"
+        WindowStartupLocation="CenterScreen" Background="Aqua"
+         Closed="Window_Closed">
+    <Window.Resources>
+        <Style TargetType="TabItem">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="13"></Setter>
+                <Setter Property="FontFamily" Value="TimeNewRoman"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Style.Setters>
+                <Setter Property="Height" Value="32"></Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0:0.5" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="Red"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0:0.5" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="Black"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="13"></Setter>
+                <Setter Property="FontFamily" Value="TimeNewRoman"></Setter>
+                <Setter Property="RowHeight" Value="25"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontSize" Value="13"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="FontFamily" Value="TimeNewRoman"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="TextBox">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="13"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontFamily" Value="TimeNewRoman"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="13"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontFamily" Value="TimeNewRoman"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Label">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="13"></Setter>
+                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontFamily" Value="TimeNewRoman"></Setter>
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    <DockPanel Width="1000" Height="700">
+        <TabControl>
+            <TabItem Header="Doanh thu">
+                <DockPanel LastChildFill="False">
+                    <DockPanel DockPanel.Dock="Top" Height="30" Margin="0,30,0,20">
+                        <DockPanel DockPanel.Dock="Left" HorizontalAlignment="Center">
+                            <DatePicker x:Name="datePickerFrom" Margin="0,0,50,0" FontSize="13" Width="150"></DatePicker>
+                            <DatePicker x:Name="datePickerTo" Margin="0,0,50,0" FontSize="13" Width="150"></DatePicker>
+                            <Button x:Name="btnFindBill" Width="100" Click="btnFindBill_Click">
+                                Tìm kiếm
+                            </Button>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top">
+                        <DataGrid x:Name="dtgBill" Height="620" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding ID}">
+                                    
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Mã bàn" Binding="{Binding TableID}">
+
+                                </DataGridTextColumn>
+                                
+                                <DataGridTextColumn Header="Ngày vào" Binding="{Binding DateCheckIn}">
+
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày ra" Binding="{Binding DateCheckOut}">
+
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Trạng thái" Binding="{Binding BillStatus}">
+
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalBill}">
+
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Món ăn">
+                <DockPanel LastChildFill="False">
+                    <DockPanel LastChildFill="False" Width="580" Height="635" Margin="0,30,0,0">
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Height="50" Width="580" HorizontalAlignment="Center">
+                            <Button x:Name="btnAddFood" DockPanel.Dock="Left" Width="80" Margin="50,0,50,0" Click="btnAddFood_Click">
+                                Thêm
+                            </Button>
+                            <Button x:Name="btnDeleteFood" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnDeleteFood_Click">
+                                Xóa
+                            </Button>
+                            <Button x:Name="btnEditFood" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnEditFood_Click">
+                                Sửa
+                            </Button>
+                            <Button x:Name="btnSelectFood" DockPanel.Dock="Left" Width="80" Click="btnSelectFood_Click">
+                                Xem
+                            </Button>
+                        </DockPanel>
+                        <DockPanel>
+                            <DataGrid x:Name="dtgFood" Width="580" Height="560" AutoGenerateColumns="False" HorizontalContentAlignment="Center">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}">
+                                        
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên món ăn" Binding="{Binding Name}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Giá" Binding="{Binding Price}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên danh mục" Binding="{Binding CategoryName}">
+
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                                
+                            </DataGrid>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Right" LastChildFill="False" Width="400" Height="620" Margin="0,30,0,20">
+                        <DockPanel DockPanel.Dock="Top" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20">
+                            <TextBox x:Name="txtFindFood" DockPanel.Dock="Left" VerticalContentAlignment="Center"></TextBox>
+                            <Button x:Name="btnFindFood" DockPanel.Dock="Left" Width="100" Margin="50,0,0,0" Click="btnFindFood_Click">Tìm kiếm</Button>
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Height="570">
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    ID :
+                                </Label>
+                                <TextBox x:Name="txtFoodID" IsReadOnly="True" DockPanel.Dock="Left"
+                                         Text="{Binding SelectedItem.ID,ElementName=dtgFood,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Tên món ăn :
+                                </Label>
+                                <TextBox x:Name="txtFoodName" DockPanel.Dock="Left" 
+                                         Text="{Binding SelectedItem.Name,ElementName=dtgFood,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Tên danh mục :
+                                </Label>
+                                <ComboBox x:Name="cbbFoodCategoryName" DockPanel.Dock="Left"
+                                          SelectedValue="{Binding SelectedItem.CategoryName,ElementName=dtgFood,Mode=OneWay}">
+                                    
+                                </ComboBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Giá tiền :
+                                </Label>
+                                <TextBox x:Name="txtFoodPrice" DockPanel.Dock="Left"
+                                         Text="{Binding SelectedItem.Price,ElementName=dtgFood,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <Image Source=".\Images\Sorry-Coffee-Art.jpg"></Image>
+                        </DockPanel>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Danh mục">
+                <DockPanel LastChildFill="False">
+                    <DockPanel LastChildFill="False" Width="580" Height="635" Margin="0,30,0,0">
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Height="50" Width="580" HorizontalAlignment="Center">
+                            <Button x:Name="btnAddCategory" DockPanel.Dock="Left" Width="80" Margin="50,0,50,0" Click="btnAddCategory_Click">
+                                Thêm
+                            </Button>
+                            <Button x:Name="btnDeleteCategory" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnDeleteCategory_Click">
+                                Xóa
+                            </Button>
+                            <Button x:Name="btnEditCategory" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnEditCategory_Click">
+                                Sửa
+                            </Button>
+                            <Button x:Name="btnSelectCategory" DockPanel.Dock="Left" Width="80" Click="btnSelectCategory_Click">
+                                Xem
+                            </Button>
+                        </DockPanel>
+                        <DockPanel>
+                            <DataGrid x:Name="dtgFoodCategory" Width="580" Height="560" AutoGenerateColumns="False" HorizontalContentAlignment="Center">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}">
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên danh mục" Binding="{Binding Name}">
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Right" LastChildFill="False" Width="400" Height="620" Margin="0,30,0,20">
+                        <DockPanel DockPanel.Dock="Top" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20">
+                            <TextBox x:Name="txtFindCategory" DockPanel.Dock="Left" VerticalContentAlignment="Center" Height="30" Width="200" FontSize="13" FontFamily="TimeNewRoman"></TextBox>
+                            <Button x:Name="btnFindCategory" DockPanel.Dock="Left" Width="100" Margin="50,0,0,0" Click="btnFindCategory_Click">Tìm kiếm</Button>
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Height="570">
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    ID :
+                                </Label>
+                                <TextBox x:Name="txtCategoryID" IsReadOnly="True" DockPanel.Dock="Left" 
+                                         Text="{Binding SelectedItem.ID,ElementName=dtgFoodCategory,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Tên danh mục :
+                                </Label>
+                                <TextBox x:Name="txtCategoryName" DockPanel.Dock="Left"
+                                         Text="{Binding SelectedItem.Name,ElementName=dtgFoodCategory,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <Image DockPanel.Dock="Bottom" Source=".\Images\Category.jpg"></Image>
+                            <Image DockPanel.Dock="Bottom" Source=".\Images\category2.jpg"></Image>
+                        </DockPanel>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Bàn ăn">
+                <DockPanel LastChildFill="False">
+                    <DockPanel LastChildFill="False" Width="580" Height="635" Margin="0,30,0,0">
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Height="50" Width="580" HorizontalAlignment="Center">
+                            <Button x:Name="btnAddTable" DockPanel.Dock="Left" Width="80" Margin="50,0,50,0" Click="btnAddTable_Click">
+                                Thêm
+                            </Button>
+                            <Button x:Name="btnDeleteTable" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnDeleteTable_Click">
+                                Xóa
+                            </Button>
+                            <Button x:Name="btnEditTable" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnEditTable_Click">
+                                Sửa
+                            </Button>
+                            <Button x:Name="btnSelectTable" DockPanel.Dock="Left" Width="80" Click="btnSelectTable_Click">
+                                Xem
+                            </Button>
+                        </DockPanel>
+                        <DockPanel>
+                            <DataGrid x:Name="dtgTable" Width="580" Height="560" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Center">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên bàn" Binding="{Binding Name}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding TableStatus}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Vị trí" Binding="{Binding Location}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Loại bàn" Binding="{Binding TableType}">
+
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Right" LastChildFill="False" Width="400" Height="620" Margin="0,30,0,20">
+                        <DockPanel DockPanel.Dock="Top" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20">
+                            <TextBox x:Name="txtFindTable" DockPanel.Dock="Left" VerticalContentAlignment="Center"></TextBox>
+                            <Button x:Name="btnFindTable" DockPanel.Dock="Left" Width="100" Margin="50,0,0,0" Click="btnFindTable_Click">Tìm kiếm</Button>
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Height="570">
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    ID :
+                                </Label>
+                                <TextBox x:Name="txtTableID" IsReadOnly="True" DockPanel.Dock="Left" 
+                                         Text="{Binding SelectedItem.ID,ElementName=dtgTable,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Tên bàn :
+                                </Label>
+                                <TextBox x:Name="txtTableName" DockPanel.Dock="Left"
+                                         Text="{Binding SelectedItem.Name,ElementName=dtgTable,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                     Vị trí :
+                                </Label>
+                                <TextBox x:Name="txtTableLocation" DockPanel.Dock="Left" 
+                                         Text="{Binding SelectedItem.Location,ElementName=dtgTable,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Trạng thái :
+                                </Label>
+                                <ComboBox x:Name="cbbTableStatus" DockPanel.Dock="Left"
+                                          SelectedValue="{Binding SelectedItem.TableStatus,ElementName=dtgTable,Mode=OneWay}">
+                                    
+                                </ComboBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Loại bàn :
+                                </Label>
+                                <ComboBox x:Name="cbbTableType" DockPanel.Dock="Left"
+                                          SelectedValue="{Binding SelectedItem.TableType,ElementName=dtgTable,Mode=OneWay}">
+                                    
+                                </ComboBox>
+                            </DockPanel>
+                            <Image Source=".\Images\Tablecoffee.jpg"></Image>
+                        </DockPanel>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Người dùng">
+                <DockPanel LastChildFill="False">
+                    <DockPanel LastChildFill="False" Width="580" Height="635" Margin="0,30,0,0">
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Height="50" Width="580" HorizontalAlignment="Center">
+                            <Button x:Name="btnAddAccount" DockPanel.Dock="Left" Width="80" Margin="50,0,50,0" Click="btnAddAccount_Click">
+                                Thêm
+                            </Button>
+                            <Button x:Name="btnDeleteAccount" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnDeleteAccount_Click">
+                                Xóa
+                            </Button>
+                            <Button x:Name="btnEditAccount" DockPanel.Dock="Left" Width="80" Margin="0,0,50,0" Click="btnEditAccount_Click">
+                                Sửa
+                            </Button>
+                            <Button x:Name="btnSelectAccount" DockPanel.Dock="Left" Width="80" Click="btnSelectAccount_Click">
+                                Xem
+                            </Button>
+                        </DockPanel>
+                        <DockPanel>
+                            <DataGrid x:Name="dtgAccount" Width="580" Height="560" AutoGenerateColumns="False" HorizontalContentAlignment="Center">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}">
+                                        
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding UserName}">
+                                        
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tên hiển thị" Binding="{Binding DisplayName}">
+                                        
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Mật khẩu" Binding="{Binding Pass}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Loại tài khoản" Binding="{Binding AccountType}">
+
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Right" LastChildFill="False" Width="400" Height="620" Margin="0,30,0,20">
+                        <DockPanel DockPanel.Dock="Top" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20">
+                            <TextBox x:Name="txtFindAccount" DockPanel.Dock="Left" VerticalContentAlignment="Center" Height="30" Width="200" FontSize="13" FontFamily="TimeNewRoman"></TextBox>
+                            <Button x:Name="btnFindAccount" DockPanel.Dock="Left" Width="100" Margin="50,0,0,0" Click="btnFindAccount_Click">Tìm kiếm</Button>
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Height="570">
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    ID :
+                                </Label>
+                                <TextBox x:Name="txtAccountID" IsReadOnly="True" DockPanel.Dock="Left" Width="200" FontSize="13" FontFamily="TimeNewRoman" Text="{Binding SelectedItem.ID,ElementName=dtgAccount,Mode=OneWay}"></TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Tên đăng nhập :
+                                </Label>
+                                <TextBox x:Name="txtAccountName" DockPanel.Dock="Left"
+                                         Text="{Binding SelectedItem.UserName,ElementName=dtgAccount,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Mật khẩu :
+                                </Label>
+                                <TextBox x:Name="txtAccountPassword" DockPanel.Dock="Left" 
+                                         Text="{Binding SelectedItem.Pass,ElementName=dtgAccount,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Tên hiển thị :
+                                </Label>
+                                <TextBox x:Name="txtAccountDisplayName" DockPanel.Dock="Left"
+                                         Text="{Binding SelectedItem.DisplayName,ElementName=dtgAccount,Mode=OneWay}">
+                                    
+                                </TextBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="20,0,0,20">
+                                <Label DockPanel.Dock="Left">
+                                    Loại tài khoản :
+                                </Label>
+                                <ComboBox x:Name="cbbAccountType" DockPanel.Dock="Left"
+                                          SelectedValue="{Binding SelectedItem.AccountType,ElementName=dtgAccount,Mode=OneWay}"></ComboBox>
+                            </DockPanel>
+                            <Image Source=".\Images\Sorry-Coffee-Art.jpg"></Image>
+                        </DockPanel>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

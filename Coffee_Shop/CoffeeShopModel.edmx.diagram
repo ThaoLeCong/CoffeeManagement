@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38c7f93e0e4b4223bf576711a87a7e71" Name="Diagram1">
+        <EntityTypeShape EntityType="Coffee_ShopModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Coffee_ShopModel.TblAccount" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Coffee_ShopModel.TblBill" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Coffee_ShopModel.TblBillInfor" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Coffee_ShopModel.TblFood" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Coffee_ShopModel.TblFoodCategory" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Coffee_ShopModel.TblTable" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="Coffee_ShopModel.FK__TblBill__BillSta__117F9D94" ManuallyRouted="false" />
+        <AssociationConnector Association="Coffee_ShopModel.FK__TblBillIn__Total__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="Coffee_ShopModel.FK__TblBillIn__FoodI__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="Coffee_ShopModel.FK__TblFood__Price__0BC6C43E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
